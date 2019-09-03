@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use App\User;
 use App\Message;
 
 use App\Events\ShowUserList;
@@ -44,6 +45,20 @@ class LoginController extends Controller
     }
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        $users = User::where([
+            ['is_online', false]
+        ])->get();
+
+        return view('auth.login', compact('users'));
+    }
+
+    /**
      * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -65,8 +80,18 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
+        // Check if User already Online
+        $check_user = User::where('email', $request->email)->first();
+        if($check_user->is_online){
+            return redirect('/login')->with([
+                'status' => 'warning',
+                'message' => $check_user->name.' already logged in, please use other account instead!'
+            ]);
+        }
+
         if ($this->attemptLogin($request)) {
             $user = Auth::user();
+
             $user->is_online = true;
             $user->save();
 

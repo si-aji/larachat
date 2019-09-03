@@ -34,6 +34,12 @@
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('chat') }}">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('profile') }}">Profile</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -61,10 +67,12 @@
         </main>
     </div>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     @yield('js_plugins')
 
     <script>
-        $.ajaxSetup({ {{-- Set csrf token for every ajax request --}}
+        // Set csrf token for every ajax request
+        $.ajaxSetup({ 
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/profile', 'UserController@index')->name('profile');
+Route::put('/profile/{id}', 'UserController@update')->name('profile.update');
+
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::post('/sent', 'MessageController@sentMessage')->name('sent_message');
 Route::post('/fetch', 'MessageController@fetchMessage')->name('fetch_message');
