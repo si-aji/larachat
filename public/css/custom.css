@@ -1,0 +1,35 @@
+.msg {
+    position: relative;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+}
+.msg .msg-btn {
+    position: absolute;
+    right: 0;
+    min-width: 30px;
+    height: 30px;
+    color: #fff;
+    background: rgba(96, 125, 139, .5);
+    border-top-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    transition: all ease-in-out .3s;
+    line-height: 0;
+    z-index: 1;
+    border: none;
+    padding: 1rem .5rem;
+    text-align: center;
+}
+.msg:hover .msg-btn{
+    background: rgba(63, 81, 181, .5);
+    padding: 1rem 1.5rem;
+}
+.msg-from {
+    margin-left: 4rem;
+} .msg-from li {
+    background: #42a5f5;
+}
+.msg-to {
+    margin-right: 4rem;
+} .msg-to li {
+    background: #eee;
+}
